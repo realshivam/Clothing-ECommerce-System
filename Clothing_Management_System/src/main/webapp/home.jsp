@@ -27,7 +27,7 @@
 	<a href="ShowCategories">My Categories</a>
 	<br>
 	<br>
-	<a href="CategoryForm.jsp">Earnings</a>
+	<a href="Earnings">Earnings</a>
 	<br>
 	<br>
 	<a href="CategoryForm.jsp">Add Category</a>

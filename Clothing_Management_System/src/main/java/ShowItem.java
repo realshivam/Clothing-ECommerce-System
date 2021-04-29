@@ -25,6 +25,7 @@ public class ShowItem extends HttpServlet {
 		
 		HttpSession h = req.getSession();
 		String databasename;
+	 //fetching databasename from session
 		if(h.getAttribute("user").toString().equals("Customer"))
 		{
 			databasename=h.getAttribute("db").toString();
@@ -33,6 +34,7 @@ public class ShowItem extends HttpServlet {
 			databasename=h.getAttribute("databasename").toString();
 		}
 		
+		//fetching category from the form present in ShowCategories
 		
 		String category = req.getParameter("category").toString();
 		
@@ -41,14 +43,15 @@ public class ShowItem extends HttpServlet {
 
 		 try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
+			//Connecting to the agents data base and taking out all values in a particular category table
 			 String db = "select * from "+category;
 			 Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+databasename,"root","Hello_123") ;
 			 Statement s = c.createStatement();
 			 ResultSet rs = s.executeQuery(db);
 			 
 
-			
-
+			 //printing everything in a tabular form
+			 
 			 res.setContentType("text/html");
 			 
 			 res.getWriter().println("<style>");
@@ -84,6 +87,18 @@ public class ShowItem extends HttpServlet {
 			 }
 			 
 			 res.getWriter().println("</table>");
+			 
+			 res.getWriter().print("<br>");
+			 if(h.getAttribute("user").toString().equals("Customer"))
+			 {
+				 h.setAttribute("Category", category);
+				 res.getWriter().print("<form action='ReduceStock' method='post'>");
+				 res.getWriter().print("<input type='text' name='itemname' placeholder='item name'>");
+				 res.getWriter().print("<input type='submit' value='Purchase'>");
+				 
+				
+			 }
+			 
 			 
 		} catch (ClassNotFoundException e) {
 		

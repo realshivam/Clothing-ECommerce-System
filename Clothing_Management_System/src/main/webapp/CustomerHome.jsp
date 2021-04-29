@@ -12,6 +12,8 @@
 	My DashBoard
 	<br>
 	<br>
+	<!--Calls Buy Servlet -->
+	
 	<a href="Buy">Buy</a>
 	<br>
 

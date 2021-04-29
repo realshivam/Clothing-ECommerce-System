@@ -9,7 +9,7 @@ public class DataBaseOperations {
 	String user;
 	String DataBaseName;
 	Connection con;
-	
+	//constructor for login users
 	public DataBaseOperations(String e,String p,String u) throws ClassNotFoundException, SQLException
 	{
 		this.email=e;
@@ -22,6 +22,7 @@ public class DataBaseOperations {
 		
 		 
 	}
+	//constructor for sign in users
 	public DataBaseOperations(String n,String e,String p,String u,String uid) throws ClassNotFoundException, SQLException
 	{
 		this.email=e;
@@ -35,6 +36,7 @@ public class DataBaseOperations {
 		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ClothingManagementSystem","root","Hello_123") ;
 	}
 	
+	//checks wheather user entered valid credentials
 	public boolean isValidUser() throws ClassNotFoundException, SQLException {
 	
 		String sql = "select * from "+user+" where email = "+"'"+ email +"'"+ " and password = " +"'"+password+"'";	
@@ -57,7 +59,7 @@ public class DataBaseOperations {
 		return false;
 		
 	}
-	
+	//inserts new user in our database and also creates a database for him if he is an agent
 	public boolean signin() throws ClassNotFoundException, SQLException
 	{
 		
@@ -72,7 +74,7 @@ public class DataBaseOperations {
 			 st.close();
 			 con.close();
 			 
-			 //Creating database for the Agent
+			 //Creating database for the Agent and checking using session attribute user
 			 if(user.equals("Agent"))
 			 {
 			 String db = "create database "+DataBaseName;
@@ -86,6 +88,7 @@ public class DataBaseOperations {
 		
 		return false;
 	}
+	//checks whether user with a particular email and userid is already present in our database
 	
 	private boolean isAlreadyPresent() throws ClassNotFoundException, SQLException
 	{
