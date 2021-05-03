@@ -62,6 +62,7 @@ public class Login extends HttpServlet {
 					//users
 					
 					else {
+						h.setAttribute("userdatabasename", dbo.DataBaseName);
 						h.setAttribute("name", dbo.fullname);
 					h.setAttribute("user", "Customer");
 							

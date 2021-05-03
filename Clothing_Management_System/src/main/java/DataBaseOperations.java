@@ -51,12 +51,11 @@ public class DataBaseOperations {
 		
 		 if(rs.next())
 		 {
-			 if(user.equals("Agent"))
-			 {
+			 
 				 
 			   this.DataBaseName=rs.getNString("userid");
 			 
-			 }
+			
 			 
 			
 			  this.fullname=rs.getNString("name");
@@ -90,12 +89,18 @@ public class DataBaseOperations {
 			 con.close();
 			 
 			 //Creating database for the Agent and checking using session attribute user
-			 if(user.equals("Agent"))
-			 {
+			 
 			 String db = "create database "+DataBaseName;
 			 Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306","root","Hello_123") ;
 			 Statement s = c.createStatement();
 			 s.execute(db);
+			 
+			 if(user.equals("Customer"))
+			 {
+				 Connection cd = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+DataBaseName,"root","Hello_123") ;
+				 String x = "create table purchased (brand varchar(60),color varchar(60),price varchar(60))";
+				 Statement stm = cd.createStatement();
+				 stm.execute(x);
 			 }
 			
 			return true;

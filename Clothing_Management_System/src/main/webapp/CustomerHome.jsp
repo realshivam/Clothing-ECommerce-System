@@ -74,7 +74,7 @@
 		<ul class="mt-2 text-gray-600">
 			<!-- Links -->
 			<li class="mt-8">
-				<a href="ShowCategories?agentuserid=ss123" class="flex ">
+				<a href="FetchCartItems" class="flex ">
 					<svg
 						class="fill-current h-5 w-5 dark:text-gray-300"
 						viewBox="0 0 24 24">

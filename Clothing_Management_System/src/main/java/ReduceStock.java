@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.mysql.cj.Session;
+import com.trishul.IndividualItem.IndividualItem;
 
 @WebServlet("/ReduceStock")
 public class ReduceStock extends HttpServlet {
@@ -18,12 +19,17 @@ public class ReduceStock extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req , HttpServletResponse res) throws IOException {
 		
-		
+	
+		 
 		String itemname = req.getParameter("itemname");
 		
 		HttpSession h = req.getSession();
 		
+		
+		
 		String databasename = h.getAttribute("db").toString();
+		
+		String userdatabasename=h.getAttribute("userdatabasename").toString();
 		
 		String Category =  h.getAttribute("Category").toString();
 		
@@ -37,6 +43,20 @@ public class ReduceStock extends HttpServlet {
 			 
 			 int n = Integer.parseInt(rs.getNString("instock"));
 			 int price = Integer.parseInt(rs.getNString("price"));
+			 
+			 String p = String.valueOf(price);
+			 String brand = rs.getNString("brand");
+			 
+			 String color = rs.getNString("color");
+			 
+			
+			 
+			 
+			
+			 
+			
+			 
+			 
 			 
 			 if(n>0)
 			 {
@@ -67,8 +87,14 @@ public class ReduceStock extends HttpServlet {
 			 
 			 sta.execute(str);
 			 
+			 Connection cd = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+userdatabasename,"root","Hello_123") ;
 			 
+			 Statement hk = cd.createStatement();
 			 
+			 String purchaser = "insert into purchased values('"+brand+"','"+color+"','"+price+"')";
+			 
+			 hk.execute(purchaser);
+			
 			 }
 			 
 			 
