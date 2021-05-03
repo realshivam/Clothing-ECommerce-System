@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
 import java.sql.*;
@@ -25,14 +27,23 @@ public class Earnings extends HttpServlet {
 				 
 				 String userid = h.getAttribute("databasename").toString();
 				 Class.forName("com.mysql.cj.jdbc.Driver");
-				 String db = "select earnings from Agent where userid = '"+userid+"'";
+				 String db = "select earnings,name from Agent where userid = '"+userid+"'";
 				 Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/ClothingManagementSystem","root","Hello_123") ;
 				 Statement s = c.createStatement();
 				 ResultSet rs = s.executeQuery(db);
 				 
 				 rs.next();
 				 
-				 res.getWriter().print(rs.getNString("earnings"));
+				 String pesa = rs.getNString("earnings");
+				 
+				 String name = rs.getNString("name");
+				 
+				 
+				 h.setAttribute("earnings", pesa);
+				 h.setAttribute("name", name);
+				 res.sendRedirect("home.jsp");
+				 
+				 
 				 
 			} catch (ClassNotFoundException e) {
 			

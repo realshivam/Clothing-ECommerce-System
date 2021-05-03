@@ -26,8 +26,6 @@ public class Login extends HttpServlet {
 		
 		String user = req.getParameter("user");
 
-	
-	
 			try {
 				
 				// creating DataBaseOperation class's object using a Constructor that is made for users who try to login
@@ -56,7 +54,7 @@ public class Login extends HttpServlet {
 					h.setAttribute("user", "Agent");
 					//now we send the Agent to his dash-board
 					
-					res.sendRedirect("home.jsp");
+					res.sendRedirect("Earnings");
 					}
 					
 					//now if user is Customer we dont have a database for him he will only see databases of agents

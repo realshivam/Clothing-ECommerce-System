@@ -44,25 +44,26 @@
 	 
 	 
 	for(IndividualItem d : arr){%>
-                
+                <form action="EditItem" method="post">
                 <tr class="border-b hover:bg-orange-100 bg-gray-100">
-                    <td class="p-3 px-5"><input type="text" value="<%=d.getBrand()%>" class="bg-transparent"></td>
-                    <td class="p-3 px-5"><input type="text" value="<%=d.getColor()%>" class="bg-transparent"></td>
-                     <td class="p-3 px-5"><input type="text" value="<%=d.getInstock()%>" class="bg-transparent"></td>
-                      <td class="p-3 px-5"><input type="text" value="<%=d.getPrice()%>" class="bg-transparent"></td>
+                    <td class="p-3 px-5"><input type="text" value="<%=d.getBrand()%>" name='brand'" class="bg-transparent"></td>
+                    <td class="p-3 px-5"><input type="text" value="<%=d.getColor()%>" name='color'" class="bg-transparent"></td>
+                     <td class="p-3 px-5"><input type="text" value="<%=d.getInstock()%>" name='instock'" class="bg-transparent"></td>
+                      <td class="p-3 px-5"><input type="text" value="<%=d.getPrice()%>" name='price'" class="bg-transparent"></td>
                       <%if(session.getAttribute("user").toString().equals("Customer"))
 					{ %>
                     <td class="p-3 px-5 flex justify-end"><button type="button" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"><a href="ReduceStock?itemname=<%=d.getBrand()%>">Purchase</a></button></td>
                 	<%}
                       else{%>
                     	  
-                     	   <td class="p-3 px-5 flex justify-end"><button type="button" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"><a href="ReduceStock?itemname=<%=d.getBrand()%>">Edit</a></button><button type="button" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"><a href="ReduceStock?itemname=<%=d.getBrand()%>">Delete</a></button></td>
+                     	   <td class="p-3 px-5 flex justify-end"><button type="submit" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Edit</button><button type="button" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"><a href="DeleteItem?itemname=<%=d.getBrand()%>">Delete</a></button></td>
                       <%}%>
                 	
                 	
                 </tr>
-                
+               </form> 
        <%}%>
+       
             </tbody>
             
         </table>
