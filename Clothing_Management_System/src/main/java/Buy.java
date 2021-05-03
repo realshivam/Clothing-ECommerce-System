@@ -5,23 +5,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.trishul.IndividualItem.IndividualItem;
+
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 @WebServlet("/Buy")
 public class Buy extends HttpServlet {
-
 	
+	ArrayList<String>arr=new ArrayList<String>();
 	
 	public void doGet(HttpServletRequest req , HttpServletResponse res) throws IOException {
-		
-		res.getWriter().print("Agents : ");
-		
+				
 		 try {
-			 
 			 
 			 Class.forName("com.mysql.cj.jdbc.Driver");
 			 
@@ -36,33 +38,31 @@ public class Buy extends HttpServlet {
 			 Statement s = c.createStatement();
 			 ResultSet rs = s.executeQuery(db);
 			 
-			 res.setContentType("text/html");
+//			 res.setContentType("text/html");
 			 
 			 while(rs.next())
-			 {
+			 { 
+				String databasename = rs.getNString("userid");
 				 
-				 String databasename = rs.getNString("userid");
-				 
-				
-				
-				 //sending get request to ShowCategories servlet
-				 
-				 res.getWriter().println(" <form action='ShowCategories' method='get'>");
-				 
-				 //Printing userid/databasename of agents in the button and setting it to value so we may fetch it
-				 //further using getParameter()
-				 res.getWriter().println(" <input type='submit' value='"+rs.getNString("userid")+"' name='agentuserid'>");
-				 res.getWriter().println("</form>");
-				
-				 
+				arr.add(databasename);
 				
 			 }
+			 
+			 req.setAttribute("agentids", arr);
+			 
+			 RequestDispatcher rd = req.getRequestDispatcher("CustomerHome.jsp");
+			 
+			 rd.forward(req, res);
+			 
 			 
 		} catch (ClassNotFoundException e) {
 			
 			e.printStackTrace();
 		} catch (SQLException e) {
 		
+			e.printStackTrace();
+		} catch (ServletException e) {
+			
 			e.printStackTrace();
 		}
 		

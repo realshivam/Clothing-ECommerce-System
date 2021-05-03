@@ -1,5 +1,7 @@
 import java.sql.*;
 
+import javax.servlet.http.HttpSession;
+
 
 public class DataBaseOperations {
 
@@ -51,8 +53,14 @@ public class DataBaseOperations {
 		 {
 			 if(user.equals("Agent"))
 			 {
+				 
 			   this.DataBaseName=rs.getNString("userid");
+			 
 			 }
+			 
+			
+			  this.fullname=rs.getNString("name");
+			 
 			 return true;
 		 }
 		 
@@ -65,7 +73,14 @@ public class DataBaseOperations {
 		
 		if(!this.isAlreadyPresent())
 		{
-			String sql = "insert into "+user+" values('"+fullname+"',"+"'"+email+"',"+"'"+password+"'," +"'"+DataBaseName+"')";
+			String sql;
+			if(user.equals("Agent"))
+			{
+				sql = "insert into "+user+" values('"+fullname+"',"+"'"+email+"',"+"'"+password+"'," +"'"+DataBaseName+"',"+"'0')";
+			}
+			else {
+				sql = "insert into "+user+" values('"+fullname+"',"+"'"+email+"',"+"'"+password+"'," +"'"+DataBaseName+"')";
+			}
 			
 			
 			 Statement st = con.createStatement();

@@ -16,7 +16,7 @@ import com.mysql.cj.Session;
 public class ReduceStock extends HttpServlet {
 
 	
-	public void doPost(HttpServletRequest req , HttpServletResponse res) throws IOException {
+	public void doGet(HttpServletRequest req , HttpServletResponse res) throws IOException {
 		
 		
 		String itemname = req.getParameter("itemname");
@@ -72,7 +72,7 @@ public class ReduceStock extends HttpServlet {
 			 }
 			 
 			 
-			 res.sendRedirect("CustomerHome.jsp");
+			 res.sendRedirect("Buy");
 			 
 			 
 			 

@@ -52,6 +52,7 @@ public class Login extends HttpServlet {
 					//if user is Agent then we'll need to access his database several times do setting it up in session
 					
 					h.setAttribute("databasename", dbo.DataBaseName);
+					h.setAttribute("name", dbo.fullname);
 					h.setAttribute("user", "Agent");
 					//now we send the Agent to his dash-board
 					
@@ -63,11 +64,12 @@ public class Login extends HttpServlet {
 					//users
 					
 					else {
+						h.setAttribute("name", dbo.fullname);
 					h.setAttribute("user", "Customer");
-					
+							
 					//sending the Customer to the home page
 					
-					res.sendRedirect("CustomerHome.jsp");
+					res.sendRedirect("Buy");
 					}
 					
 				}
