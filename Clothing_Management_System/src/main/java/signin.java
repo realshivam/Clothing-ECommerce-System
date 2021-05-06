@@ -28,8 +28,8 @@ public class signin extends HttpServlet{
 			DataBaseOperations dbo = new DataBaseOperations(fullname,email,password,user,userid);
 			if(dbo.signin())
 			{
-				res.getWriter().print("Signed in Successfully");
-				
+//				res.getWriter().print("Signed in Successfully");
+				res.sendRedirect("login.jsp");
 			}
 			else {
 				
