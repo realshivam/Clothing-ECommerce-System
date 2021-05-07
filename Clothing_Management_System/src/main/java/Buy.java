@@ -19,7 +19,7 @@ import java.util.ArrayList;
 @WebServlet("/Buy")
 public class Buy extends HttpServlet {
 	
-	ArrayList<String>arr=new ArrayList<String>();
+	ArrayList<IndividualItem>arr=new ArrayList<IndividualItem>();
 	
 	public void doGet(HttpServletRequest req , HttpServletResponse res) throws IOException {
 				
@@ -43,8 +43,9 @@ public class Buy extends HttpServlet {
 			 while(rs.next())
 			 { 
 				String databasename = rs.getNString("userid");
+				String naam=rs.getNString("name");
 				 
-				arr.add(databasename);
+				arr.add(new IndividualItem(naam,databasename));
 				
 			 }
 			 
