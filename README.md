@@ -1,5 +1,5 @@
 
-# Clothing Management System
+# Clothing ECommerce + Management System
 
 Clothing Management System is an E-Commerce system that
 provides the sellers and buyers an interactive interface
